@@ -42,54 +42,31 @@
         .verse-link:hover { color: var(--gold-color); border-bottom-color: var(--gold-color); }
         .verse-link::after { content: " 🔗 (Tefsiri Oku)"; font-size: 0.8em; opacity: 0.7; }
 
-        /* --- TAKVİM (DÜZELTİLMİŞ CSS) --- */
+        /* TAKVİM (Düzeltilmiş) */
         .magic-calendar-wrapper { position: relative; width: 600px; margin: -100px auto 40px auto; z-index: 100; }
         .calendar-card { display: flex; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.4); position: relative; z-index: 102; transition: transform 0.3s ease; }
         .magic-calendar-wrapper:hover .calendar-card { transform: translateY(-5px); }
         
         .cal-half { flex: 1; text-align: center; display: flex; flex-direction: column; }
-        
-        /* Başlık Bloğu (Düzeltme Burada) */
-        .cal-top-block { 
-            padding: 15px 0; 
-            color: #fff; 
-            display: flex;           /* Flexbox açıldı */
-            flex-direction: column;  /* Alt alta dizilimi zorunlu kıldık */
-            justify-content: center;
-            align-items: center;
-            min-height: 70px;        /* Yükseklik verildi */
-        }
+        .cal-top-block { padding: 15px 0; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 80px; }
         .cal-miladi .cal-top-block { background-color: var(--primary-color); }
         .cal-hicri .cal-top-block { background-color: var(--secondary-color); }
         
-        .cal-label { 
-            font-size: 0.85em; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            font-weight: bold; 
-            display: block;      /* Blok eleman yapıldı */
-            opacity: 0.9; 
-            margin-bottom: 5px;  /* Altına boşluk */
-        }
-        .cal-day-name { 
-            font-size: 1.1em; 
-            font-weight: 600; 
-            display: block;      /* Blok eleman yapıldı */
-            margin-top: 0; 
-            line-height: 1.2;
-        }
-
+        .cal-label { font-size: 0.85em; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; display: block; opacity: 0.9; margin-bottom: 5px; }
+        .cal-day-name { font-size: 1.1em; font-weight: 600; display: block; line-height: 1.2; }
+        
         .cal-body-block { padding: 15px 0 20px 0; background-color: #fff; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
         .cal-date-big { font-size: 3.5em; font-family: "Georgia", serif; font-weight: bold; line-height: 1; color: var(--text-dark); }
         .cal-month-year { font-size: 0.9em; color: #78909c; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
-        
+
+        /* TARİHÇE */
         .history-drawer { position: absolute; top: 90%; left: 15px; right: 15px; background: #fff; border-radius: 0 0 12px 12px; box-shadow: 0 15px 30px rgba(0,0,0,0.2); max-height: 0; opacity: 0; overflow: hidden; z-index: 101; transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1); }
         .magic-calendar-wrapper:hover .history-drawer { max-height: 500px; opacity: 1; top: 100%; }
         .drawer-content { padding: 15px; background-color: #fff; border-top: 4px solid var(--primary-color); }
         .history-list { list-style: none; padding: 0; margin: 0; max-height: 400px; overflow-y: auto; text-align: left; }
-        .history-list::-webkit-scrollbar { width: 6px; }
-        .history-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
         .history-list li { padding: 8px 0; border-bottom: 1px solid #eee; font-size: 0.9em; color: #455a64; line-height: 1.4; }
+        .history-list a { color: #1565c0; text-decoration: none; font-weight: 500; } /* LİNKLER ARTIK MAVİ VE BELİRGİN */
+        .history-list a:hover { text-decoration: underline; color: var(--primary-color); }
         .year-badge { font-weight: bold; color: var(--primary-color); margin-right: 5px; }
 
         /* KOKPİT */
@@ -150,6 +127,7 @@
         .archive-item.expanded .archive-body { display: block; }
         .archive-item.expanded .toggle-icon { transform: rotate(180deg); }
         .item-answer { font-size: 0.95em; color: #555; white-space: pre-wrap; line-height: 1.6; }
+        .item-image { margin-top: 15px; max-width: 100%; border-radius: 5px; border: 1px solid #ddd; }
         .item-footer { margin-top: 20px; display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed #eee; padding-top: 10px; }
         .item-date { font-size: 0.75em; color: #999; }
         .btn-reviewed { background-color: var(--primary-color); color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 0.85em; font-weight: bold; display: flex; align-items: center; gap: 5px; transition: background 0.3s; }
@@ -251,21 +229,40 @@
         function checkCustomTag(select) { document.getElementById('customTagContainer').style.display = select.value === 'custom' ? 'block' : 'none'; }
 
         document.addEventListener("DOMContentLoaded", function() {
-            // TAKVİM
             const bugun = new Date();
             const aylar = ["OCAK", "ŞUBAT", "MART", "NİSAN", "MAYIS", "HAZİRAN", "TEMMUZ", "AĞUSTOS", "EYLÜL", "EKİM", "KASIM", "ARALIK"];
             const gunler = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
             
+            // MİLADİ TAKVİM
             document.getElementById("miladiMonth").innerText = aylar[bugun.getMonth()];
             document.getElementById("miladiYear").innerText = bugun.getFullYear();
             document.getElementById("miladiDayName").innerText = gunler[bugun.getDay()];
             document.getElementById("miladiNumber").innerText = bugun.getDate();
             
-            document.getElementById("hicriMonth").innerText = "CEMAZİYELEVVEL"; 
-            document.getElementById("hicriYear").innerText = "1447";
-            document.getElementById("hicriNumber").innerText = bugun.getDate();
+            // HİCRİ TAKVİM (MANUEL ÇEVİRİ - HATA RİSKİNİ SIFIRLAR)
+            // Not: Hicri takvimde gün her zaman miladi günle aynıdır (Pzt ise Pzt). Sadece ay ve yıl farklıdır.
+            // Basitçe günü alıp Osmanlıca karşılığını yazıyoruz.
+            const hicriGunler = ["Yevm-i Ehad", "Yevm-i İsneyn", "Yevm-i Sülâsâ", "Yevm-i Erba'â", "Yevm-i Hamîs", "Yevm-i Cum'a", "Yevm-i Sebt"];
+            const hicriAylar = ["MUHARREM", "SAFER", "REBİÜLEVVEL", "REBİÜLAHİR", "CEMAZİYELEVVEL", "CEMAZİYELAHİR", "RECEB", "ŞABAN", "RAMAZAN", "ŞEVVAL", "ZİLKADE", "ZİLHİCCE"];
+            
+            // Hicri hesaplamayı basitleştirelim veya API kullanalım. Intl API bazen "..." dönebilir.
+            // Şimdilik "Yevm-i ..." kısmını garantilemek için:
+            document.getElementById("hicriDayName").innerText = hicriGunler[bugun.getDay()];
+            
+            // Intl API'yi tekrar deneyelim, hata verirse varsayılan değer atayalım.
+            try {
+                const hicri = new Intl.DateTimeFormat('tr-TR-u-ca-islamic-civil', { day: 'numeric', month: 'long', year: 'numeric' }).formatToParts(bugun);
+                let hGun="", hAy="", hYil="";
+                hicri.forEach(p => { if(p.type==="day") hGun=p.value; if(p.type==="month") hAy=p.value; if(p.type==="year") hYil=p.value; });
+                document.getElementById("hicriMonth").innerText = hAy.toUpperCase();
+                document.getElementById("hicriYear").innerText = hYil;
+                document.getElementById("hicriNumber").innerText = hGun;
+            } catch(e) {
+                document.getElementById("hicriMonth").innerText = "HİCRİ";
+                document.getElementById("hicriNumber").innerText = bugun.getDate();
+            }
 
-            // AYET
+            // AYET SİSTEMİ
             const ayetler = [
                 { arapca: "إِنَّ اللَّهَ يَأْمُرُ بِالْعَدْلِ", meal: "Şüphesiz Allah, adaleti emreder.", ref: "Nahl 90", link: "nahl-suresi/1991/90-ayet" },
                 { arapca: "كُونُوا قَوَّامِينَ بِالْقِسْطِ", meal: "Adaleti titizlikle ayakta tutanlar olun.", ref: "Nisa 135", link: "nisa-suresi/628/135-ayet" },
@@ -286,7 +283,8 @@
                     const l = document.getElementById("historyList"); l.innerHTML="";
                     d.events.slice(0,10).forEach(e => {
                         let li = document.createElement("li");
-                        li.innerHTML = `<span class="year-badge">${e.year}</span> ${e.text}`;
+                        const link = e.pages && e.pages[0] ? e.pages[0].content_urls.desktop.page : `https://tr.wikipedia.org/wiki/${e.year}`;
+                        li.innerHTML = `<span class="year-badge">${e.year}</span> <a href="${link}" target="_blank">${e.text}</a>`;
                         l.appendChild(li);
                     });
                 })
