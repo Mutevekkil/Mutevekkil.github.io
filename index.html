@@ -42,30 +42,28 @@
         .verse-link:hover { color: var(--gold-color); border-bottom-color: var(--gold-color); }
         .verse-link::after { content: " 🔗 (Tefsiri Oku)"; font-size: 0.8em; opacity: 0.7; }
 
-        /* TAKVİM (Düzeltilmiş) */
+        /* TAKVİM */
         .magic-calendar-wrapper { position: relative; width: 600px; margin: -100px auto 40px auto; z-index: 100; }
         .calendar-card { display: flex; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.4); position: relative; z-index: 102; transition: transform 0.3s ease; }
         .magic-calendar-wrapper:hover .calendar-card { transform: translateY(-5px); }
-        
         .cal-half { flex: 1; text-align: center; display: flex; flex-direction: column; }
         .cal-top-block { padding: 15px 0; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 80px; }
         .cal-miladi .cal-top-block { background-color: var(--primary-color); }
         .cal-hicri .cal-top-block { background-color: var(--secondary-color); }
-        
         .cal-label { font-size: 0.85em; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; display: block; opacity: 0.9; margin-bottom: 5px; }
         .cal-day-name { font-size: 1.1em; font-weight: 600; display: block; line-height: 1.2; }
-        
         .cal-body-block { padding: 15px 0 20px 0; background-color: #fff; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
         .cal-date-big { font-size: 3.5em; font-family: "Georgia", serif; font-weight: bold; line-height: 1; color: var(--text-dark); }
         .cal-month-year { font-size: 0.9em; color: #78909c; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
-
-        /* TARİHÇE */
+        
         .history-drawer { position: absolute; top: 90%; left: 15px; right: 15px; background: #fff; border-radius: 0 0 12px 12px; box-shadow: 0 15px 30px rgba(0,0,0,0.2); max-height: 0; opacity: 0; overflow: hidden; z-index: 101; transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1); }
         .magic-calendar-wrapper:hover .history-drawer { max-height: 500px; opacity: 1; top: 100%; }
         .drawer-content { padding: 15px; background-color: #fff; border-top: 4px solid var(--primary-color); }
         .history-list { list-style: none; padding: 0; margin: 0; max-height: 400px; overflow-y: auto; text-align: left; }
+        .history-list::-webkit-scrollbar { width: 6px; }
+        .history-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
         .history-list li { padding: 8px 0; border-bottom: 1px solid #eee; font-size: 0.9em; color: #455a64; line-height: 1.4; }
-        .history-list a { color: #1565c0; text-decoration: none; font-weight: 500; } /* LİNKLER ARTIK MAVİ VE BELİRGİN */
+        .history-list a { color: #1565c0; text-decoration: none; font-weight: 500; }
         .history-list a:hover { text-decoration: underline; color: var(--primary-color); }
         .year-badge { font-weight: bold; color: var(--primary-color); margin-right: 5px; }
 
@@ -80,14 +78,21 @@
         /* MAKALELER */
         .content-container { max-width: 1100px; margin: 0 auto 60px auto; padding: 0 20px; }
         .article-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 25px; margin-bottom: 50px; }
-        .article-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 25px; position: relative; transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border-left: 5px solid var(--primary-color); display: flex; flex-direction: column; justify-content: space-between; }
-        .article-card:hover { transform: translateY(-5px) scale(1.01); box-shadow: 0 15px 30px rgba(0,96,100,0.15); border-color: var(--primary-color); cursor: pointer; }
-        .card-link-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1; }
+        .article-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 25px; position: relative; transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border-left: 5px solid var(--primary-color); display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; }
+        .article-card:hover { transform: translateY(-5px) scale(1.01); box-shadow: 0 15px 30px rgba(0,96,100,0.15); border-color: var(--primary-color); }
         .meta-date { font-size: 0.8em; color: #90a4ae; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 10px; }
         .article-title { font-size: 1.4em; margin: 0 0 10px 0; line-height: 1.3; color: var(--text-dark); font-family: "Georgia", serif; }
         .excerpt { font-size: 0.95em; color: #546e7a; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
         .read-more-icon { margin-top: 15px; font-size: 0.9em; color: var(--primary-color); font-weight: bold; opacity: 0; transform: translateX(-10px); transition: all 0.3s ease; }
         .article-card:hover .read-more-icon { opacity: 1; transform: translateX(0); }
+
+        /* YENİ: MAKALE OKUMA PENCERESİ (MODAL) */
+        #articleModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; backdrop-filter: blur(5px); }
+        .modal-content { position: relative; background: #fff; width: 80%; max-width: 800px; margin: 50px auto; padding: 40px; border-radius: 10px; max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .close-modal { position: absolute; top: 20px; right: 25px; font-size: 30px; font-weight: bold; color: #aaa; cursor: pointer; }
+        .close-modal:hover { color: #d32f2f; }
+        #modalTitle { font-family: "Georgia", serif; color: var(--primary-color); border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
+        #modalBody { font-size: 1.1em; line-height: 1.8; color: #333; white-space: pre-wrap; }
 
         /* ARŞİV BÖLÜMÜ */
         .archive-section { max-width: 1100px; margin: 0 auto 50px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 2fr; gap: 30px; }
@@ -103,7 +108,6 @@
 
         .list-card { background: #fff; border-radius: 10px; padding: 25px; border: 1px solid #e0e0e0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 5px solid var(--secondary-color); }
         .archive-list { list-style: none; padding: 0; margin: 0; max-height: 800px; overflow-y: auto; }
-        
         .archive-item { margin-bottom: 15px; border: 1px solid #eee; border-radius: 6px; overflow: hidden; transition: all 0.3s; }
         .archive-item:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         
@@ -127,7 +131,6 @@
         .archive-item.expanded .archive-body { display: block; }
         .archive-item.expanded .toggle-icon { transform: rotate(180deg); }
         .item-answer { font-size: 0.95em; color: #555; white-space: pre-wrap; line-height: 1.6; }
-        .item-image { margin-top: 15px; max-width: 100%; border-radius: 5px; border: 1px solid #ddd; }
         .item-footer { margin-top: 20px; display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed #eee; padding-top: 10px; }
         .item-date { font-size: 0.75em; color: #999; }
         .btn-reviewed { background-color: var(--primary-color); color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 0.85em; font-weight: bold; display: flex; align-items: center; gap: 5px; transition: background 0.3s; }
@@ -167,6 +170,14 @@
         </div>
     </div>
 
+    <div id="articleModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeArticle()">×</span>
+            <h2 id="modalTitle">Başlık Yükleniyor...</h2>
+            <div id="modalBody">İçerik yükleniyor...</div>
+        </div>
+    </div>
+
     <div id="appContent">
         <header>
             <h1>HAKİMLİK NOTLARIM</h1>
@@ -196,20 +207,32 @@
 
         <div class="content-container">
             <div class="article-grid">
-                <div class="article-card"><a href="renan-makalesi.html" class="card-link-overlay"></a><div><div class="meta-date">27 KASIM 2025</div><h2 class="article-title">Ernest Renan'ın "İslam ve Bilim" Konferansı</h2><p class="excerpt">İslam'ın ilerlemeye engel olduğu iddiası ve Namık Kemal'in buna karşı yazdığı tarihi reddiyenin analizi...</p></div><div class="read-more-icon">İncele →</div></div>
-                <div class="article-card"><a href="#" class="card-link-overlay"></a><div><div class="meta-date">15 KASIM 2025</div><h2 class="article-title">İYUK Madde 2 ve Menfaat İhlali</h2><p class="excerpt">İdari Yargılama Usulü Kanunu kapsamında iptal davalarının ön koşulu olan "menfaat ihlali" kavramı...</p></div><div class="read-more-icon">İncele →</div></div>
-                <div class="article-card"><a href="#" class="card-link-overlay"></a><div><div class="meta-date">01 KASIM 2025</div><h2 class="article-title">Türk İdari Teşkilatında "Yetki Genişliği"</h2><p class="excerpt">Merkezi idarenin taşra teşkilatındaki yansıması olan yetki genişliği ilkesinin incelenmesi...</p></div><div class="read-more-icon">İncele →</div></div>
-                <div class="article-card"><a href="#" class="card-link-overlay"></a><div><div class="meta-date">20 EKİM 2025</div><h2 class="article-title">Anayasa Mahkemesi Bireysel Başvuru</h2><p class="excerpt">Mülkiyet hakkının ihlali iddialarında AYM'nin son dönemde verdiği pilot kararlar...</p></div><div class="read-more-icon">İncele →</div></div>
-            </div>
+                <div class="article-card" onclick="openArticle('Ernest Renan ve İslam')">
+                    <div>
+                        <div class="meta-date">27 KASIM 2025</div>
+                        <h2 class="article-title">Ernest Renan'ın "İslam ve Bilim" Konferansı</h2>
+                        <p class="excerpt">İslam'ın ilerlemeye engel olduğu iddiası ve Namık Kemal'in buna karşı yazdığı tarihi reddiyenin analizi...</p>
+                    </div>
+                    <div class="read-more-icon">OKU →</div>
+                </div>
+                <div class="article-card" onclick="openArticle('İYUK Madde 2')">
+                    <div>
+                        <div class="meta-date">15 KASIM 2025</div>
+                        <h2 class="article-title">İYUK Madde 2 ve Menfaat İhlali</h2>
+                        <p class="excerpt">İdari Yargılama Usulü Kanunu kapsamında iptal davalarının ön koşulu olan "menfaat ihlali" kavramı...</p>
+                    </div>
+                    <div class="read-more-icon">OKU →</div>
+                </div>
+                </div>
         </div>
 
         <div class="archive-section">
             <div class="entry-card">
                 <div class="section-header">Bilgi / Soru Kaydet</div>
-                <div class="input-group"><label class="input-label">Ders / Konu</label><select id="noteTag" class="form-select" onchange="checkCustomTag(this)"><option value="Genel">Genel Not</option><option value="Anayasa">Anayasa</option><option value="İdare">İdare</option><option value="Ceza">Ceza</option><option value="Medeni">Medeni</option><option value="Tarih">Tarih</option><option value="custom" style="color:var(--primary-color); font-weight:bold;">+ Ekle...</option></select><div id="customTagContainer"><input type="text" id="customTagInput" class="form-input" placeholder="Konu Adı"></div></div>
+                <div class="input-group"><label class="input-label">Ders / Konu</label><select id="noteTag" class="form-select" onchange="checkCustomTag(this)"><option value="Genel">Genel Not</option><option value="Makale (Özel)">Makale (Özel)</option><option value="Anayasa">Anayasa</option><option value="İdare">İdare</option><option value="Ceza">Ceza</option><option value="Medeni">Medeni</option><option value="Tarih">Tarih</option><option value="custom" style="color:var(--primary-color); font-weight:bold;">+ Ekle...</option></select><div id="customTagContainer"><input type="text" id="customTagInput" class="form-input" placeholder="Konu Adı"></div></div>
                 <div class="input-group"><label class="input-label">Başlık</label><input type="text" id="noteQuestion" class="form-input" placeholder="Başlık..."></div>
                 <div class="input-group"><label class="input-label">İçerik</label><textarea id="noteAnswer" class="form-textarea" rows="6" placeholder="Notlar..."></textarea></div>
-                <button id="saveBtn" class="btn-save">ARŞİVE KAYDET</button>
+                <button id="saveBtn" class="btn-save">SİSTEME YÜKLE</button>
             </div>
             <div class="list-card">
                 <div class="section-header">Bulut Arşivi</div>
@@ -224,45 +247,42 @@
     </div>
 
     <script>
-        // Yardımcı Fonksiyonlar
         function getDiyanetLink(linkData) { return `https://kuran.diyanet.gov.tr/tefsir/${linkData}`; }
         function checkCustomTag(select) { document.getElementById('customTagContainer').style.display = select.value === 'custom' ? 'block' : 'none'; }
 
+        // MAKALE PENCERESİ KONTROLLERİ
+        window.openArticle = function(searchTitle) {
+            document.getElementById('articleModal').style.display = 'block';
+            document.getElementById('modalTitle').innerText = "Aranıyor...";
+            document.getElementById('modalBody').innerText = "Veritabanından çekiliyor...";
+            
+            // Global'e atadığımız fonksiyona yönlendir
+            if(window.findArticleInDB) {
+                window.findArticleInDB(searchTitle);
+            } else {
+                document.getElementById('modalBody').innerText = "Veritabanı bağlantısı henüz hazır değil. Lütfen bekleyin.";
+            }
+        };
+
+        window.closeArticle = function() {
+            document.getElementById('articleModal').style.display = 'none';
+        };
+
         document.addEventListener("DOMContentLoaded", function() {
+            // TAKVİM & DİĞER GARANTİ ÖZELLİKLER
             const bugun = new Date();
             const aylar = ["OCAK", "ŞUBAT", "MART", "NİSAN", "MAYIS", "HAZİRAN", "TEMMUZ", "AĞUSTOS", "EYLÜL", "EKİM", "KASIM", "ARALIK"];
             const gunler = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
             
-            // MİLADİ TAKVİM
             document.getElementById("miladiMonth").innerText = aylar[bugun.getMonth()];
             document.getElementById("miladiYear").innerText = bugun.getFullYear();
             document.getElementById("miladiDayName").innerText = gunler[bugun.getDay()];
             document.getElementById("miladiNumber").innerText = bugun.getDate();
             
-            // HİCRİ TAKVİM (MANUEL ÇEVİRİ - HATA RİSKİNİ SIFIRLAR)
-            // Not: Hicri takvimde gün her zaman miladi günle aynıdır (Pzt ise Pzt). Sadece ay ve yıl farklıdır.
-            // Basitçe günü alıp Osmanlıca karşılığını yazıyoruz.
-            const hicriGunler = ["Yevm-i Ehad", "Yevm-i İsneyn", "Yevm-i Sülâsâ", "Yevm-i Erba'â", "Yevm-i Hamîs", "Yevm-i Cum'a", "Yevm-i Sebt"];
-            const hicriAylar = ["MUHARREM", "SAFER", "REBİÜLEVVEL", "REBİÜLAHİR", "CEMAZİYELEVVEL", "CEMAZİYELAHİR", "RECEB", "ŞABAN", "RAMAZAN", "ŞEVVAL", "ZİLKADE", "ZİLHİCCE"];
-            
-            // Hicri hesaplamayı basitleştirelim veya API kullanalım. Intl API bazen "..." dönebilir.
-            // Şimdilik "Yevm-i ..." kısmını garantilemek için:
-            document.getElementById("hicriDayName").innerText = hicriGunler[bugun.getDay()];
-            
-            // Intl API'yi tekrar deneyelim, hata verirse varsayılan değer atayalım.
-            try {
-                const hicri = new Intl.DateTimeFormat('tr-TR-u-ca-islamic-civil', { day: 'numeric', month: 'long', year: 'numeric' }).formatToParts(bugun);
-                let hGun="", hAy="", hYil="";
-                hicri.forEach(p => { if(p.type==="day") hGun=p.value; if(p.type==="month") hAy=p.value; if(p.type==="year") hYil=p.value; });
-                document.getElementById("hicriMonth").innerText = hAy.toUpperCase();
-                document.getElementById("hicriYear").innerText = hYil;
-                document.getElementById("hicriNumber").innerText = hGun;
-            } catch(e) {
-                document.getElementById("hicriMonth").innerText = "HİCRİ";
-                document.getElementById("hicriNumber").innerText = bugun.getDate();
-            }
+            document.getElementById("hicriMonth").innerText = "CEMAZİYELEVVEL"; 
+            document.getElementById("hicriYear").innerText = "1447";
+            document.getElementById("hicriNumber").innerText = bugun.getDate();
 
-            // AYET SİSTEMİ
             const ayetler = [
                 { arapca: "إِنَّ اللَّهَ يَأْمُرُ بِالْعَدْلِ", meal: "Şüphesiz Allah, adaleti emreder.", ref: "Nahl 90", link: "nahl-suresi/1991/90-ayet" },
                 { arapca: "كُونُوا قَوَّامِينَ بِالْقِسْطِ", meal: "Adaleti titizlikle ayakta tutanlar olun.", ref: "Nisa 135", link: "nisa-suresi/628/135-ayet" },
@@ -290,7 +310,7 @@
                 })
                 .catch(() => { document.getElementById("historyList").innerHTML = "<li>Bağlantı kurulamadı.</li>"; });
 
-            // KRONOMETRE (Local Storage)
+            // KRONOMETRE & TO-DO (Local Storage)
             let sec = localStorage.getItem('timerSec') ? parseInt(localStorage.getItem('timerSec')) : 0;
             let tInt;
             const tDisp = document.getElementById('timerDisplay');
@@ -300,7 +320,6 @@
             window.stopTimer = () => clearInterval(tInt);
             window.resetTimer = () => { if(confirm("Sıfırla?")) { sec=0; localStorage.setItem('timerSec', 0); upT(); } };
 
-            // TO-DO (Local Storage)
             const ul = document.getElementById('todoList');
             function loadTodo() {
                 const t = JSON.parse(localStorage.getItem('todoList')) || [];
@@ -319,7 +338,6 @@
             };
             loadTodo();
 
-            // KOKPİT
             const mufredat = ["Pazar: YDS", "Pazartesi: Anayasa", "Salı: İdare", "Çarşamba: Tarih", "Perşembe: Medeni", "Cuma: Borçlar", "Cumartesi: Deneme"];
             const lugat = [{ k: "Beraat-i Zimmet", a: "Suçsuzluk esası." }, { k: "Mütemmim Cüz", a: "Bütünleyici parça." }, { k: "Tevsi-i Mezuniyet", a: "Yetki genişliği." }, { k: "Ahde Vefa", a: "Söze sadıklık." }, { k: "Mücbir Sebep", a: "Dış etken." }, { k: "Hakk-ı Müktesep", a: "Kazanılmış hak." }, { k: "Karine", a: "Belirti." }];
             document.getElementById("dailyTopic").innerText = mufredat[bugun.getDay()];
@@ -337,7 +355,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, orderBy, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, orderBy, updateDoc, where } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDyM2wuew7HJL04c6unXReHf5RbNUMFMt4",
@@ -352,7 +370,6 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // GİRİŞ
         const loginOverlay = document.getElementById('loginOverlay');
         const appContent = document.getElementById('appContent');
         const loginBtn = document.getElementById('loginBtn');
@@ -375,12 +392,13 @@
             });
         });
 
-        // BULUT ARŞİV
         const archiveList = document.getElementById('archiveList');
         const saveBtn = document.getElementById('saveBtn');
 
         async function loadArchiveFromCloud() {
             archiveList.innerHTML = "";
+            // Makaleler (Uzun metinler) listede kalabalık etmesin diye onları hariç tutabiliriz
+            // Şimdilik hepsini gösteriyoruz, sıralama Aralıklı Tekrar'a göre.
             const q = query(collection(db, "notes"), orderBy("lastReview")); 
             const querySnapshot = await getDocs(q);
             
@@ -392,6 +410,10 @@
             querySnapshot.forEach((docSnap) => {
                 const n = docSnap.data();
                 const id = docSnap.id;
+                
+                // "Makale (Özel)" etiketlileri ana listede gizlemek istersen buraya if koyabiliriz.
+                // Şimdilik hepsini gösterelim.
+                
                 const lastRev = new Date(n.lastReview);
                 const diffDays = Math.floor((new Date() - lastRev) / (1000 * 60 * 60 * 24));
                 
@@ -429,6 +451,34 @@
                 li.querySelector(`#btn-del-${id}`).onclick = () => deleteNote(id);
                 archiveList.appendChild(li);
             });
+        }
+
+        // MAKALE BULMA FONKSİYONU (GLOBAL ERİŞİM İÇİN WINDOW'A EKLENDİ)
+        window.findArticleInDB = async function(titleSearch) {
+            // Basit arama: Başlığı tam eşleşen veya içeren kaydı bul
+            // Firestore'da "like" sorgusu zordur, o yüzden tümünü çekip JS ile süzelim (Not sayısı az olduğu için performans sorunu olmaz)
+            
+            // Başlığın ilk kelimesini alıp aratalım (Daha esnek)
+            const keywords = titleSearch.split(" ");
+            const q = query(collection(db, "notes"));
+            const querySnapshot = await getDocs(q);
+            
+            let foundNote = null;
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                // Arama mantığı: Başlık içinde aranan kelimeler geçiyor mu?
+                if (data.question.includes("Renan") && titleSearch.includes("Renan")) foundNote = data;
+                else if (data.question.includes("İYUK") && titleSearch.includes("İYUK")) foundNote = data;
+                // Diğer eşleşmeler...
+            });
+
+            if (foundNote) {
+                document.getElementById('modalTitle').innerText = foundNote.question;
+                document.getElementById('modalBody').innerText = foundNote.answer;
+            } else {
+                document.getElementById('modalTitle').innerText = "Bulunamadı";
+                document.getElementById('modalBody').innerText = "Bu başlığa ait bir makale veritabanında bulunamadı. Lütfen 'Makale (Özel)' etiketiyle sisteme yükleyin.";
+            }
         }
 
         saveBtn.addEventListener('click', async () => {
